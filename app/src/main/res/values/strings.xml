@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Activito</string>
+    <string name="activities">Aktivity</string>
+    <string name="weight">Váha</string>
+    <string name="profile">Profil</string>
+    <string name="settings">Nastavení</string>
 </resources>
