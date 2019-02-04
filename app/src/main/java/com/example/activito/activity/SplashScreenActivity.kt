@@ -8,7 +8,6 @@ import android.os.Handler
 import com.example.activito.R
 class SplashScreenActivity : AppCompatActivity() {
 
-
     val ANIMATION_TIMER: Long = 3000;
 
     override fun onCreate(savedInstanceState: Bundle?) {

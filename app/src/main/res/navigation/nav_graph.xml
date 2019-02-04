@@ -7,22 +7,22 @@
 
     <fragment
             android:id="@+id/nav_activity"
-            android:name="com.example.activito.ActivityFragment"
+            android:name="com.example.activito.fragment.ActivityFragment"
             android:label="fragment_activity"
             tools:layout="@layout/fragment_activity"/>
     <fragment
             android:id="@+id/nav_weight"
-            android:name="com.example.activito.WeightFragment"
+            android:name="com.example.activito.fragment.WeightFragment"
             android:label="fragment_weight"
             tools:layout="@layout/fragment_weight"/>
     <fragment
             android:id="@+id/nav_profile"
-            android:name="com.example.activito.ProfileFragment"
+            android:name="com.example.activito.fragment.ProfileFragment"
             android:label="fragment_profile"
             tools:layout="@layout/fragment_profile"/>
     <fragment
             android:id="@+id/nav_settings"
-            android:name="com.example.activito.SettingsFragment"
+            android:name="com.example.activito.fragment.SettingsFragment"
             android:label="fragment_settings"
             tools:layout="@layout/fragment_settings"/>
 </navigation>
