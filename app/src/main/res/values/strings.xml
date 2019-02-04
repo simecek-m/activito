@@ -4,4 +4,6 @@
     <string name="weight">Váha</string>
     <string name="profile">Profil</string>
     <string name="settings">Nastavení</string>
+    <string name="login_description">Pro přístup k Vašim fitness datům se musíte přihlásit k Vašemu Google účtu.</string>
+    <string name="login">Přihlášení</string>
 </resources>
