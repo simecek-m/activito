@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textStyle="italic"
-            android:textSize="@dimen/text_big"
+            android:textSize="@dimen/text_bigger"
             android:textColor="@color/colorPrimary"
             android:text="@string/login_description"
             app:layout_constraintStart_toStartOf="@+id/logo"
