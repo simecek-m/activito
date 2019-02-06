@@ -1,7 +1,9 @@
 package com.example.activito.fragment
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +16,19 @@ import com.example.activito.activity.LoginActivity
 import com.example.activito.databinding.FragmentProfileBinding
 import com.example.activito.module.GlideApp
 import com.example.activito.viewmodel.UserViewModel
+import com.google.android.gms.fitness.Fitness
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
 
     lateinit var userViewModel:UserViewModel
+    lateinit var binding:FragmentProfileBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        val binding = DataBindingUtil.inflate<FragmentProfileBinding>(inflater, R.layout.fragment_profile, container, false)
+        binding = DataBindingUtil.inflate<FragmentProfileBinding>(inflater, R.layout.fragment_profile, container, false)
         binding.viewmodel = userViewModel
+        binding.setLifecycleOwner(this)
         return binding.root
     }
 
@@ -40,6 +45,14 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(context, LoginActivity::class.java))
             activity?.finish()
         }
+
+        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+            .readData(userViewModel.getBodyInfoRequest())
+            .addOnSuccessListener { response ->
+                userViewModel.setBodyInfo(response)
+            }
+            .addOnFailureListener{ e -> Log.e(TAG, "bodyInfoRequest", e)}
+
     }
 
 

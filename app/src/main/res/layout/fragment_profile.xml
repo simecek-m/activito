@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View"/>
         <variable
                 name="viewmodel"
                 type="com.example.activito.viewmodel.UserViewModel" />
@@ -55,6 +56,40 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email"/>
+
+        <TextView
+                android:id="@+id/height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="1.82 m"
+                android:text="@{viewmodel.height + ` m`}"
+                android:visibility="@{viewmodel.height == null? View.INVISIBLE: View.VISIBLE}"
+                android:textSize="@dimen/text_bigger"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="@dimen/space_big"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image"/>
+
+        <TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="84 kg"
+                android:text="@{viewmodel.weight + ` kg`}"
+                android:visibility="@{viewmodel.weight == null? View.INVISIBLE: View.VISIBLE}"
+                android:textSize="@dimen/text_bigger"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="@dimen/space_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/height"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/logout_button"
