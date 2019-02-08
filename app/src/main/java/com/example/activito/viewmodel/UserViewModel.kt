@@ -66,4 +66,18 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
             ?.asFloat()
     }
 
+    fun getWeightProgressRequest():DataReadRequest{
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+
+        val endTime = calendar.timeInMillis
+        calendar.add(Calendar.MONTH, -6)
+        val startTime = calendar.timeInMillis
+
+        return DataReadRequest.Builder()
+            .read(DataType.TYPE_WEIGHT)
+            .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
+            .build()
+    }
+
 }

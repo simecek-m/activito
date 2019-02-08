@@ -34,12 +34,14 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        GlideApp.with(this)
-            .load(userViewModel.currentUser?.photoUrl)
-            .placeholder(R.drawable.ic_avatar)
-            .circleCrop()
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .into(profile_image)
+        if(userViewModel.currentUser?.photoUrl != null){
+            GlideApp.with(this)
+                .load(userViewModel.currentUser?.photoUrl)
+                .placeholder(R.drawable.ic_avatar)
+                .circleCrop()
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(profile_image)
+        }
         logout_button.setOnClickListener{
             userViewModel.signOut()
             startActivity(Intent(context, LoginActivity::class.java))
