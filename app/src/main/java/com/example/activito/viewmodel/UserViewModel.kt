@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.activito.R
+import com.github.mikephil.charting.data.Entry
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -16,6 +16,7 @@ import com.google.android.gms.fitness.request.DataReadRequest
 import com.google.android.gms.fitness.result.DataReadResponse
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
@@ -78,6 +79,15 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
             .read(DataType.TYPE_WEIGHT)
             .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
             .build()
+    }
+
+    fun getWeightProgressChartPoints(data:DataReadResponse): ArrayList<Entry>{
+        val result = ArrayList<Entry>()
+        data.getDataSet(DataType.TYPE_WEIGHT)
+            .dataPoints.forEachIndexed { index, dataPoint ->
+                result.add(Entry( index.toFloat(), dataPoint.getValue(Field.FIELD_WEIGHT).asFloat()))
+        }
+        return result
     }
 
 }
