@@ -11,7 +11,7 @@
     <TextView
             android:id="@+id/weight"
             android:layout_width="wrap_content"
-            android:layout_height="57dp"
+            android:layout_height="wrap_content"
             android:text="@string/weight"
             android:textSize="@dimen/text_title"
             android:layout_marginStart="8dp"
@@ -25,7 +25,7 @@
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.8"
+            app:layout_constraintHeight_percent="0.6"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,5 +34,16 @@
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/weight">
     </com.github.mikephil.charting.charts.LineChart>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_weight"
+            android:src="@drawable/ic_add"
+            android:tint="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_bigger"
+            android:layout_marginEnd="@dimen/space_bigger"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

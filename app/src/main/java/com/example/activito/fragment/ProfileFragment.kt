@@ -28,7 +28,7 @@ class ProfileFragment : Fragment() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
         binding = DataBindingUtil.inflate<FragmentProfileBinding>(inflater, R.layout.fragment_profile, container, false)
         binding.viewmodel = userViewModel
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -48,14 +48,15 @@ class ProfileFragment : Fragment() {
             activity?.finish()
         }
 
+        loadUserBodyInfo()
+    }
+
+    fun loadUserBodyInfo(){
         Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
             .readData(userViewModel.getBodyInfoRequest())
             .addOnSuccessListener { response ->
                 userViewModel.setBodyInfo(response)
             }
             .addOnFailureListener{ e -> Log.e(TAG, "bodyInfoRequest", e)}
-
     }
-
-
 }
