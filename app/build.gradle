@@ -25,10 +25,16 @@ android {
     dataBinding {
         enabled = true
     }
+    signingConfigs {
+        debug {
+            storeFile file("external/debug.keystore")
+        }
+    }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'androidx.core:core-ktx:1.1.0-alpha03'
@@ -39,27 +45,21 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'com.google.android.gms:play-services-fitness:16.0.1'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
-
     // ViewModel and LiveData
     def lifecycle_version = "2.0.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
-
     //Material Components
-    implementation "com.google.android.material:material:1.0.0"
-
+    implementation 'com.google.android.material:material:1.0.0'
     //Lottie
     implementation 'com.airbnb.android:lottie:2.8.0'
-
     //Navigation Editor Component
     def nav_version = "1.0.0-alpha11"
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
-
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     kapt 'com.github.bumptech.glide:compiler:4.8.0'
-
     //Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 }

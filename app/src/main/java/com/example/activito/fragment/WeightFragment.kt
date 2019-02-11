@@ -2,8 +2,11 @@ package com.example.activito.fragment
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,19 +27,34 @@ class WeightFragment : Fragment() {
     lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_weight, container, false)
+        val view = inflater.inflate(R.layout.fragment_weight, container, false)
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        return view
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        Fitness.getHistoryClient(context, userViewModel.currentUser!!)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        add_weight.setOnClickListener {
+            Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+                .deleteData(userViewModel.getDeleteLastWeightRequet())
+                .addOnSuccessListener {
+                    println("successfully deleted data")
+                    loadWeightProgress()
+                }
+                .addOnFailureListener{ e -> println("failed to delete data ${e}") }
+        }
+        loadWeightProgress()
+    }
+
+    fun loadWeightProgress(){
+        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
             .readData(userViewModel.getWeightProgressRequest())
             .addOnSuccessListener { response ->
                 if (isAdded){
+                    println("response: ${response.dataSets}")
                     val entries = userViewModel.getWeightProgressChartPoints(response)
                     val dataSet = LineDataSet(entries, "leden")
-                    val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                    val primaryColor = ContextCompat.getColor(activity!!, R.color.colorPrimary)
                     dataSet.apply {
                         setCircleColor(Color.WHITE)
                         circleHoleColor = primaryColor

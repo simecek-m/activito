@@ -12,6 +12,7 @@ import com.google.android.gms.common.Scopes
 import com.google.android.gms.common.api.Scope
 import com.google.android.gms.fitness.data.DataType
 import com.google.android.gms.fitness.data.Field
+import com.google.android.gms.fitness.request.DataDeleteRequest
 import com.google.android.gms.fitness.request.DataReadRequest
 import com.google.android.gms.fitness.result.DataReadResponse
 import java.util.*
@@ -28,6 +29,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private val googleSignInOpetions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
+        .requestProfile()
         .requestScopes(Scope(Scopes.FITNESS_BODY_READ_WRITE))
         .requestScopes(Scope(Scopes.FITNESS_ACTIVITY_READ_WRITE))
         .build()
@@ -46,11 +48,11 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun getBodyInfoRequest():DataReadRequest{
         val calendar = Calendar.getInstance()
         calendar.time = Date()
-
+        val endTime = calendar.timeInMillis
         return DataReadRequest.Builder()
-            .read(DataType.TYPE_HEIGHT)
+            .enableServerQueries()
             .read(DataType.TYPE_WEIGHT)
-            .setTimeRange(1, calendar.timeInMillis, TimeUnit.MILLISECONDS)
+            .setTimeRange(1, endTime, TimeUnit.MILLISECONDS)
             .setLimit(1)
             .build()
     }
@@ -70,12 +72,11 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun getWeightProgressRequest():DataReadRequest{
         val calendar = Calendar.getInstance()
         calendar.time = Date()
-
         val endTime = calendar.timeInMillis
         calendar.add(Calendar.MONTH, -6)
         val startTime = calendar.timeInMillis
-
         return DataReadRequest.Builder()
+            .enableServerQueries()
             .read(DataType.TYPE_WEIGHT)
             .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
             .build()
@@ -90,4 +91,17 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         return result
     }
 
+    fun getDeleteLastWeightRequet():DataDeleteRequest{
+        val cal = Calendar.getInstance()
+        val now = Date()
+        cal.time = now
+        val endTime = cal.timeInMillis
+        cal.add(Calendar.DAY_OF_MONTH, -2)
+        val startTime = cal.timeInMillis
+        return DataDeleteRequest.Builder()
+            .addDataType(DataType.TYPE_WEIGHT)
+            .setTimeInterval(startTime, endTime, TimeUnit.MILLISECONDS)
+            .build()
+
+    }
 }
