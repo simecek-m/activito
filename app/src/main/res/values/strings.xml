@@ -9,4 +9,5 @@
     <string name="unit_meters">m</string>
     <string name="unit_kilograms">kg</string>
     <string name="loading_weight_data">Načítáme informace o Vaší váze</string>
+    <string name="feature_not_supported_yet">Tato funkce je nedostupná</string>
 </resources>

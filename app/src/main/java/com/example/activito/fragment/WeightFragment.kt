@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -34,16 +35,12 @@ class WeightFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        add_weight.setOnClickListener {
-            Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
-                .deleteData(userViewModel.getDeleteLastWeightRequet())
-                .addOnSuccessListener {
-                    println("successfully deleted data")
-                    loadWeightProgress()
-                }
-                .addOnFailureListener{ e -> println("failed to delete data ${e}") }
-        }
+        add_weight.setOnClickListener { addWeight() }
         loadWeightProgress()
+    }
+
+    private fun addWeight() {
+        Toast.makeText(activity!!, getString(R.string.feature_not_supported_yet), Toast.LENGTH_LONG).show()
     }
 
     fun loadWeightProgress(){
