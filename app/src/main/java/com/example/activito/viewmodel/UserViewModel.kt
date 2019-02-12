@@ -22,12 +22,10 @@ import kotlin.collections.ArrayList
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
     var currentUser: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(getApplication())
-
     var height: MutableLiveData<Float> = MutableLiveData()
     var weight:MutableLiveData<Float> = MutableLiveData()
 
-
-    private val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+    val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
         .requestProfile()
         .requestScopes(Scope(Scopes.FITNESS_BODY_READ_WRITE))
@@ -49,10 +47,14 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         val calendar = Calendar.getInstance()
         calendar.time = Date()
         val endTime = calendar.timeInMillis
+        calendar.add(Calendar.YEAR, -1)
+        val startTime = calendar.timeInMillis
+
         return DataReadRequest.Builder()
             .enableServerQueries()
             .read(DataType.TYPE_WEIGHT)
-            .setTimeRange(1, endTime, TimeUnit.MILLISECONDS)
+            .read(DataType.TYPE_HEIGHT)
+            .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
             .setLimit(1)
             .build()
     }
