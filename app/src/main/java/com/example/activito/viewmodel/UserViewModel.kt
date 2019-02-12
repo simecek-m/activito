@@ -27,14 +27,14 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     var weight:MutableLiveData<Float> = MutableLiveData()
 
 
-    private val googleSignInOpetions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+    private val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
         .requestProfile()
         .requestScopes(Scope(Scopes.FITNESS_BODY_READ_WRITE))
         .requestScopes(Scope(Scopes.FITNESS_ACTIVITY_READ_WRITE))
         .build()
 
-    private val googleSignInClient = GoogleSignIn.getClient(application, googleSignInOpetions);
+    private val googleSignInClient = GoogleSignIn.getClient(application, googleSignInOptions);
 
     fun signInIntent(): Intent {
         return googleSignInClient.signInIntent
