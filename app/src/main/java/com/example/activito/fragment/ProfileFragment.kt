@@ -26,7 +26,7 @@ class ProfileFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        binding = DataBindingUtil.inflate<FragmentProfileBinding>(inflater, R.layout.fragment_profile, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         binding.viewmodel = userViewModel
         binding.lifecycleOwner = this
         return binding.root

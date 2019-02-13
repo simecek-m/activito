@@ -26,5 +26,11 @@ class MainActivity : AppCompatActivity() {
 
         Fitness.getRecordingClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
             .subscribe(DataType.TYPE_HEIGHT)
+
+        Fitness.getRecordingClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .subscribe(DataType.TYPE_STEP_COUNT_DELTA)
+
+        Fitness.getRecordingClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .subscribe(DataType.TYPE_CALORIES_EXPENDED)
     }
 }

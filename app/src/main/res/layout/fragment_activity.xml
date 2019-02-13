@@ -1,25 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragment.ActivityFragment"
-        android:id="@+id/frameLayout">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.example.activito.viewmodel.ActivityViewModel">
+        </variable>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragment.ActivityFragment">
 
-    <TextView
-            android:id="@+id/fragment_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/activities"
-            android:textSize="42sp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:id="@+id/fragment_title"
+                tools:text="Today"
+                android:text="@string/today"
+                android:textSize="@dimen/text_title"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="@dimen/space_biggest"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+                android:id="@+id/calories_icon"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_calories"
+                android:tint="@color/colorPrimary"
+                android:layout_marginStart="@dimen/space_biggest"
+                android:layout_marginTop="@dimen/space_biggest"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_title"/>
+
+        <TextView
+                tools:text="12467 calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_bigger"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:text="@{viewmodel.calories == null? ` - ` : viewmodel.calories + ` ` + @string/calories}"
+                android:layout_marginStart="@dimen/space_bigger"
+                app:layout_constraintTop_toTopOf="@+id/calories_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/calories_icon"
+                app:layout_constraintStart_toEndOf="@+id/calories_icon"/>
+
+        <ImageView
+                android:id="@+id/steps_icon"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_steps"
+                android:tint="@color/colorPrimary"
+                android:layout_marginTop="@dimen/space_biggest"
+                android:layout_marginStart="0dp"
+                app:layout_constraintStart_toStartOf="@+id/calories_icon"
+                app:layout_constraintTop_toBottomOf="@+id/calories_icon"/>
+
+        <TextView
+                tools:text="12340 steps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_bigger"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:text="@{viewmodel.steps == null? ` - ` : viewmodel.steps + ` ` + @string/steps}"
+                android:layout_marginStart="@dimen/space_bigger"
+                app:layout_constraintTop_toTopOf="@+id/steps_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/steps_icon"
+                app:layout_constraintStart_toEndOf="@+id/steps_icon"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -104,6 +104,5 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
             .addDataType(DataType.TYPE_WEIGHT)
             .setTimeInterval(startTime, endTime, TimeUnit.MILLISECONDS)
             .build()
-
     }
 }
