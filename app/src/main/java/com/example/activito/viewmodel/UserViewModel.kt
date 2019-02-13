@@ -1,7 +1,11 @@
 package com.example.activito.viewmodel
 
+import android.accounts.AccountManager
 import android.app.Application
+import android.content.ContentResolver
 import android.content.Intent
+import android.content.SyncRequest
+import android.os.Bundle
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.github.mikephil.charting.data.Entry
@@ -19,7 +23,11 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
+
 class UserViewModel(application: Application): AndroidViewModel(application) {
+
+    private val GOOGLE_FIT_SYNC_AUTHORITY = "com.google.android.gms.fitness"
+    private val GOOGLE_ACCOUNT_TYPE = "com.google"
 
     var currentUser: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(getApplication())
     var height: MutableLiveData<Float> = MutableLiveData()
@@ -104,5 +112,20 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
             .addDataType(DataType.TYPE_WEIGHT)
             .setTimeInterval(startTime, endTime, TimeUnit.MILLISECONDS)
             .build()
+    }
+
+    fun synchronizeFitService(){
+        AccountManager.get(getApplication()).getAccountsByType(GOOGLE_ACCOUNT_TYPE)
+            .forEach { account ->
+                if(account.name == GoogleSignIn.getLastSignedInAccount(getApplication())?.email){
+                    ContentResolver.setSyncAutomatically(account, GOOGLE_FIT_SYNC_AUTHORITY, true)
+                    val syncRequest = SyncRequest.Builder()
+                        .setSyncAdapter(account, GOOGLE_FIT_SYNC_AUTHORITY)
+                        .setExtras(Bundle())
+                        .syncOnce()
+                        .build()
+                    ContentResolver.requestSync(syncRequest)
+                }
+            }
     }
 }
