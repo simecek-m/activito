@@ -38,10 +38,12 @@ class ActivityFragment : Fragment() {
         loadDailyCalories()
         loadDailySteps()
 
-        refresh.setOnClickListener { view ->
+        sync.setOnClickListener { clickedView ->
             if(view.animation == null){
                 userViewModel.synchronizeFitService()
-                Animation.rotation(view)
+                Animation.rotation(clickedView)
+                loadDailyCalories()
+                loadDailySteps()
             }
         }
     }

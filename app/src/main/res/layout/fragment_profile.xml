@@ -12,6 +12,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <ImageView
+                android:id="@+id/sync"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:src="@drawable/ic_sync"
+                android:tint="@color/colorPrimary"
+                android:layout_marginTop="@dimen/space_big"
+                android:layout_marginEnd="@dimen/space_big"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
         <TextView
                 android:id="@+id/name"
                 tools:text="Jan"

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.activito.R
 import com.example.activito.activity.LoginActivity
+import com.example.activito.animation.Animation
 import com.example.activito.databinding.FragmentProfileBinding
 import com.example.activito.module.GlideApp
 import com.example.activito.viewmodel.UserViewModel
@@ -47,8 +48,16 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(context, LoginActivity::class.java))
             activity?.finish()
         }
-
         loadUserBodyInfo()
+
+        sync.setOnClickListener { selectedView ->
+            if(view.animation == null){
+                userViewModel.synchronizeFitService()
+                Animation.rotation(selectedView)
+                loadUserBodyInfo()
+            }
+        }
+
     }
 
     fun loadUserBodyInfo(){
@@ -56,7 +65,6 @@ class ProfileFragment : Fragment() {
             .readData(userViewModel.getBodyInfoRequest())
             .addOnSuccessListener { response ->
                 userViewModel.setBodyInfo(response)
-            }
-            .addOnFailureListener{ e -> Log.e(TAG, "bodyInfoRequest", e)}
+            }.addOnFailureListener{ e -> Log.e(TAG, "bodyInfoRequest", e)}
     }
 }
