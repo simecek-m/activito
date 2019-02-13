@@ -9,11 +9,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.activito.R
+import com.example.activito.animation.Animation
 import com.example.activito.databinding.FragmentActivityBinding
 import com.example.activito.viewmodel.ActivityViewModel
 import com.example.activito.viewmodel.UserViewModel
 import com.google.android.gms.fitness.Fitness
 import com.google.android.gms.fitness.data.DataType
+import kotlinx.android.synthetic.main.fragment_activity.*
 
 class ActivityFragment : Fragment() {
 
@@ -35,6 +37,13 @@ class ActivityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadDailyCalories()
         loadDailySteps()
+
+        refresh.setOnClickListener { view ->
+            if(view.animation == null){
+                userViewModel.synchronizeFitService()
+                Animation.rotation(view)
+            }
+        }
     }
 
     fun loadDailySteps(){

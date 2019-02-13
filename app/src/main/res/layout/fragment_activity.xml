@@ -22,12 +22,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"
-                android:layout_marginEnd="0dp"
-                android:layout_marginStart="0dp"
                 android:layout_marginTop="@dimen/space_biggest"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"/>
+
+        <ImageView
+                android:id="@+id/refresh"
+                android:layout_width="@dimen/icon_small_size"
+                android:layout_height="@dimen/icon_small_size"
+                android:layout_marginStart="@dimen/space_big"
+                android:src="@drawable/ic_sync"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintTop_toTopOf="@+id/fragment_title"
+                app:layout_constraintStart_toEndOf="@+id/fragment_title"
+                app:layout_constraintBottom_toBottomOf="@+id/fragment_title"/>
 
         <ImageView
                 android:id="@+id/calories_icon"
@@ -41,7 +51,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/fragment_title"/>
 
         <TextView
-                tools:text="12467 calories"
+                tools:text="1580 calories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_bigger"
@@ -65,7 +75,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/calories_icon"/>
 
         <TextView
-                tools:text="12340 steps"
+                tools:text="1220 steps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_bigger"
