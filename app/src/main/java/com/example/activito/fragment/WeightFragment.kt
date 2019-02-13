@@ -1,12 +1,8 @@
 package com.example.activito.fragment
 
 import android.content.ContentValues.TAG
-import android.content.Context
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.activito.R
+import com.example.activito.animation.Animation
 import com.example.activito.viewmodel.UserViewModel
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.LineData
@@ -28,14 +25,20 @@ class WeightFragment : Fragment() {
     lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_weight, container, false)
         userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        return view
+        return inflater.inflate(R.layout.fragment_weight, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         add_weight.setOnClickListener { addWeight() }
+        sync.setOnClickListener { selectedView ->
+            if(view.animation == null){
+                userViewModel.synchronizeFitService()
+                Animation.rotation(selectedView)
+                loadWeightProgress()
+            }
+        }
         loadWeightProgress()
     }
 
