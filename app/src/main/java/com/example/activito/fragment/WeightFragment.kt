@@ -48,7 +48,6 @@ class WeightFragment : Fragment() {
             .readData(userViewModel.getWeightProgressRequest())
             .addOnSuccessListener { response ->
                 if (isAdded){
-                    println("response: ${response.dataSets}")
                     val entries = userViewModel.getWeightProgressChartPoints(response)
                     val dataSet = LineDataSet(entries, "leden")
                     val primaryColor = ContextCompat.getColor(activity!!, R.color.colorPrimary)

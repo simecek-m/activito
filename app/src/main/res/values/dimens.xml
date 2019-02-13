@@ -13,4 +13,5 @@
     <dimen name="corner_radius">20dp</dimen>
     <dimen name="stroke_width">5dp</dimen>
     <dimen name="icon_size">70dp</dimen>
+    <dimen name="icon_small_size">30dp</dimen>
 </resources>
