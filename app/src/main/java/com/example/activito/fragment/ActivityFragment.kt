@@ -48,7 +48,7 @@ class ActivityFragment : Fragment() {
         }
     }
 
-    fun loadDailySteps(){
+    private fun loadDailySteps(){
         Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_STEP_COUNT_DELTA)
             .addOnSuccessListener { dataSet ->
@@ -57,7 +57,7 @@ class ActivityFragment : Fragment() {
 
     }
 
-    fun loadDailyCalories(){
+    private fun loadDailyCalories(){
         Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_CALORIES_EXPENDED)
             .addOnSuccessListener { dataSet ->

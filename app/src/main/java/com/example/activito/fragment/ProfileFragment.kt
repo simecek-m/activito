@@ -35,9 +35,9 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(userViewModel.currentUser?.photoUrl != null){
+        userViewModel.currentUser?.photoUrl?.let {
             GlideApp.with(this)
-                .load(userViewModel.currentUser?.photoUrl)
+                .load(it)
                 .placeholder(R.drawable.ic_avatar)
                 .circleCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
@@ -49,7 +49,6 @@ class ProfileFragment : Fragment() {
             activity?.finish()
         }
         loadUserBodyInfo()
-
         sync.setOnClickListener { selectedView ->
             if(view.animation == null){
                 userViewModel.synchronizeFitService()
@@ -60,7 +59,7 @@ class ProfileFragment : Fragment() {
 
     }
 
-    fun loadUserBodyInfo(){
+    private fun loadUserBodyInfo(){
         Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
             .readData(userViewModel.getBodyInfoRequest())
             .addOnSuccessListener { response ->
