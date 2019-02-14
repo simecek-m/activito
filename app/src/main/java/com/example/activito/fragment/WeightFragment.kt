@@ -46,7 +46,7 @@ class WeightFragment : Fragment() {
         Toast.makeText(activity!!, getString(R.string.feature_not_supported_yet), Toast.LENGTH_LONG).show()
     }
 
-    fun loadWeightProgress(){
+    private fun loadWeightProgress(){
         Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
             .readData(userViewModel.getWeightProgressRequest())
             .addOnSuccessListener { response ->
