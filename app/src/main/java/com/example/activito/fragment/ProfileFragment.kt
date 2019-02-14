@@ -15,6 +15,7 @@ import com.example.activito.R
 import com.example.activito.activity.LoginActivity
 import com.example.activito.animation.Animation
 import com.example.activito.databinding.FragmentProfileBinding
+import com.example.activito.dialog.LogoutDialogFragment
 import com.example.activito.module.GlideApp
 import com.example.activito.viewmodel.UserViewModel
 import com.google.android.gms.fitness.Fitness
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
 
+    private val LOGOUT_DIALOG_TAG = "logout_dialog"
     lateinit var userViewModel:UserViewModel
     lateinit var binding:FragmentProfileBinding
 
@@ -43,11 +45,19 @@ class ProfileFragment : Fragment() {
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(profile_image)
         }
+
         logout_button.setOnClickListener{
-            userViewModel.signOut()
-            startActivity(Intent(context, LoginActivity::class.java))
-            activity?.finish()
+            LogoutDialogFragment().let {
+                it.addOnPositiveButtonClickListener{
+                    userViewModel.signOut().addOnSuccessListener {
+                        startActivity(Intent(context, LoginActivity::class.java))
+                        activity?.finish()
+                    }
+                }
+                it.show(fragmentManager!!, LOGOUT_DIALOG_TAG)
+            }
         }
+
         loadUserBodyInfo()
         sync.setOnClickListener { selectedView ->
             if(view.animation == null){
