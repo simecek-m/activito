@@ -19,6 +19,7 @@ import com.google.android.gms.fitness.data.Field
 import com.google.android.gms.fitness.request.DataDeleteRequest
 import com.google.android.gms.fitness.request.DataReadRequest
 import com.google.android.gms.fitness.result.DataReadResponse
+import com.google.android.gms.tasks.Task
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
@@ -46,9 +47,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         return googleSignInClient.signInIntent
     }
 
-    fun signOut(){
-        googleSignInClient.signOut()
+    fun signOut(): Task<Void>{
         currentUser = null
+        return googleSignInClient.signOut()
     }
 
     fun getBodyInfoRequest():DataReadRequest{
