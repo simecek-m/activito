@@ -7,12 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.activito.R
 import com.example.activito.animation.Animation
+import com.example.activito.dialog.WeightPickerDialogFragment
 import com.example.activito.viewmodel.UserViewModel
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.LineData
@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_weight.*
 
 class WeightFragment : Fragment() {
 
+    private val WEIGHT_PICKER_DIALOG_TAG = "weight_picker_dialog"
     lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,7 +32,7 @@ class WeightFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        add_weight.setOnClickListener { addWeight() }
+        add_weight.setOnClickListener { showAddWeightDialog() }
         sync.setOnClickListener { selectedView ->
             if(view.animation == null){
                 userViewModel.synchronizeFitService()
@@ -42,8 +43,9 @@ class WeightFragment : Fragment() {
         loadWeightProgress()
     }
 
-    private fun addWeight() {
-        Toast.makeText(activity!!, getString(R.string.feature_not_supported_yet), Toast.LENGTH_LONG).show()
+    private fun showAddWeightDialog() {
+        val fragment = WeightPickerDialogFragment()
+        fragment.show(fragmentManager!!, WEIGHT_PICKER_DIALOG_TAG)
     }
 
     private fun loadWeightProgress(){
