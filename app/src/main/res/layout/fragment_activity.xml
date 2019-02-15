@@ -9,197 +9,255 @@
         </variable>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".fragment.ActivityFragment">
+            android:layout_height="match_parent">
 
-        <TextView
-                android:id="@+id/fragment_title"
-                tools:text="Today"
-                android:text="@string/today"
-                android:textSize="@dimen/text_title"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_biggest"
-                android:layout_marginStart="@dimen/space_none"
-                android:layout_marginEnd="@dimen/space_none"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".fragment.ActivityFragment">
 
-        <ImageView
-                android:id="@+id/sync"
-                android:layout_width="@dimen/icon_small_size"
-                android:layout_height="@dimen/icon_small_size"
-                android:src="@drawable/ic_sync"
-                android:layout_marginTop="@dimen/space_bigger"
-                android:layout_marginEnd="@dimen/space_bigger"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                    android:id="@+id/fragment_title"
+                    tools:text="Today"
+                    android:text="@string/today"
+                    android:textSize="@dimen/text_title"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_biggest"
+                    android:layout_marginStart="@dimen/space_none"
+                    android:layout_marginEnd="@dimen/space_none"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_info"
-                android:layout_width="0dp"
-                app:cardElevation="5dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_percent="0.8"
-                app:layout_constraintHeight_percent="0.4"
-                android:layout_marginTop="@dimen/space_big"
-                android:layout_marginStart="@dimen/space_none"
-                android:layout_marginEnd="@dimen/space_none"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_title">
+            <ImageView
+                    android:id="@+id/sync"
+                    android:layout_width="@dimen/icon_small_size"
+                    android:layout_height="@dimen/icon_small_size"
+                    android:src="@drawable/ic_sync"
+                    android:layout_marginTop="@dimen/space_bigger"
+                    android:layout_marginEnd="@dimen/space_bigger"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-            <LinearLayout
-                    android:gravity="center"
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_info"
+                    android:layout_width="0dp"
+                    app:cardElevation="5dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.8"
+                    app:layout_constraintHeight_percent="0.4"
+                    android:layout_marginTop="@dimen/space_big"
+                    android:layout_marginStart="@dimen/space_none"
+                    android:layout_marginEnd="@dimen/space_none"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_title">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/calories_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        tools:layout_editor_absoluteX="50dp">
+                <LinearLayout
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <ImageView
-                            android:id="@+id/calories_icon"
-                            android:layout_width="@dimen/icon_medium_size"
-                            android:layout_height="@dimen/icon_medium_size"
-                            android:src="@drawable/ic_calories"
-                            android:layout_marginTop="@dimen/space_none"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="@dimen/space_none"
-                            android:layout_marginEnd="@dimen/space_none"
-                            app:layout_constraintEnd_toEndOf="parent"/>
-
-                    <TextView
-                            tools:text="1580 cal"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/calories_layout"
                             android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_normal"
-                            android:textStyle="bold"
-                            android:text="@{viewmodel.calories == null? ` - ` + @string/calories_short : viewmodel.calories + ` ` + @string/calories_short}"
-                            app:layout_constraintEnd_toEndOf="@+id/calories_icon"
-                            app:layout_constraintStart_toStartOf="@+id/calories_icon"
-                            android:layout_marginTop="@dimen/space_medium"
-                            app:layout_constraintTop_toBottomOf="@+id/calories_icon"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/minutes_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@id/calories_layout"
-                        app:layout_constraintBottom_toBottomOf="@id/calories_layout">
-
-                    <ImageView
-                            android:id="@+id/minutes_icon"
-                            android:layout_width="@dimen/icon_medium_size"
-                            android:layout_height="@dimen/icon_medium_size"
-                            android:src="@drawable/ic_time"
-                            android:layout_marginTop="@dimen/space_none"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="@dimen/space_none"
-                            android:layout_marginEnd="@dimen/space_none"
-                            app:layout_constraintEnd_toEndOf="parent"/>
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            tools:layout_editor_absoluteX="50dp">
 
-                    <TextView
-                            tools:text="94 min"
+                        <ImageView
+                                android:id="@+id/calories_icon"
+                                android:layout_width="@dimen/icon_medium_size"
+                                android:layout_height="@dimen/icon_medium_size"
+                                android:src="@drawable/ic_calories"
+                                android:layout_marginTop="@dimen/space_none"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_marginStart="@dimen/space_none"
+                                android:layout_marginEnd="@dimen/space_none"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                                tools:text="1580 cal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_normal"
+                                android:textStyle="bold"
+                                android:text="@{viewmodel.calories == null? ` 0 ` + @string/calories_short : viewmodel.calories + ` ` + @string/calories_short}"
+                                app:layout_constraintEnd_toEndOf="@+id/calories_icon"
+                                app:layout_constraintStart_toStartOf="@+id/calories_icon"
+                                android:layout_marginTop="@dimen/space_medium"
+                                app:layout_constraintTop_toBottomOf="@+id/calories_icon"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/minutes_layout"
                             android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_normal"
-                            android:textStyle="bold"
-                            android:text="@{viewmodel.moveMinutes == null? ` - ` + @string/minutes_short : viewmodel.moveMinutes + ` ` + @string/minutes_short}"
-                            app:layout_constraintEnd_toEndOf="@+id/minutes_icon"
-                            app:layout_constraintStart_toStartOf="@+id/minutes_icon"
-                            android:layout_marginTop="@dimen/space_medium"
-                            app:layout_constraintTop_toBottomOf="@+id/minutes_icon"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                            app:layout_constraintTop_toTopOf="@id/calories_layout"
+                            app:layout_constraintBottom_toBottomOf="@id/calories_layout">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/distance_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@id/calories_layout"
-                        app:layout_constraintBottom_toBottomOf="@id/calories_layout">
+                        <ImageView
+                                android:id="@+id/minutes_icon"
+                                android:layout_width="@dimen/icon_medium_size"
+                                android:layout_height="@dimen/icon_medium_size"
+                                android:src="@drawable/ic_time"
+                                android:layout_marginTop="@dimen/space_none"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_marginStart="@dimen/space_none"
+                                android:layout_marginEnd="@dimen/space_none"
+                                app:layout_constraintEnd_toEndOf="parent"/>
 
-                    <ImageView
-                            android:id="@+id/distance_icon"
-                            android:layout_width="@dimen/icon_medium_size"
-                            android:layout_height="@dimen/icon_medium_size"
-                            android:src="@drawable/ic_distance"
-                            android:layout_marginTop="@dimen/space_none"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="@dimen/space_none"
-                            android:layout_marginEnd="@dimen/space_none"
-                            app:layout_constraintEnd_toEndOf="parent"/>
+                        <TextView
+                                tools:text="94 min"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_normal"
+                                android:textStyle="bold"
+                                android:text="@{viewmodel.moveMinutes == null? ` 0 ` + @string/minutes_short : viewmodel.moveMinutes + ` ` + @string/minutes_short}"
+                                app:layout_constraintEnd_toEndOf="@+id/minutes_icon"
+                                app:layout_constraintStart_toStartOf="@+id/minutes_icon"
+                                android:layout_marginTop="@dimen/space_medium"
+                                app:layout_constraintTop_toBottomOf="@+id/minutes_icon"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                            tools:text="4,3 km"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/distance_layout"
                             android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_normal"
-                            android:textStyle="bold"
-                            android:text="@{viewmodel.distance == null? ` - ` + @string/kilometres_short : viewmodel.distance + ` ` + @string/kilometres_short}"
-                            app:layout_constraintEnd_toEndOf="@+id/distance_icon"
-                            app:layout_constraintStart_toStartOf="@+id/distance_icon"
-                            android:layout_marginTop="@dimen/space_medium"
-                            app:layout_constraintTop_toBottomOf="@+id/distance_icon"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                            app:layout_constraintTop_toTopOf="@id/calories_layout"
+                            app:layout_constraintBottom_toBottomOf="@id/calories_layout">
 
-        <ImageView
-                android:id="@+id/steps_icon"
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:src="@drawable/ic_steps"
-                android:layout_marginRight="@dimen/space_medium"
-                android:tint="@color/colorPrimaryDark"
-                android:layout_marginTop="@dimen/space_biggest"
-                app:layout_constraintTop_toBottomOf="@+id/card_info"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toStartOf="@+id/textView2"
-                app:layout_constraintHorizontal_chainStyle="packed"/>
+                        <ImageView
+                                android:id="@+id/distance_icon"
+                                android:layout_width="@dimen/icon_medium_size"
+                                android:layout_height="@dimen/icon_medium_size"
+                                android:src="@drawable/ic_distance"
+                                android:layout_marginTop="@dimen/space_none"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_marginStart="@dimen/space_none"
+                                android:layout_marginEnd="@dimen/space_none"
+                                app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-                tools:text="1230 steps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_bigger"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="@{viewmodel.steps == null? ` - ` + @string/steps : viewmodel.steps + ` ` + @string/steps}"
-                app:layout_constraintTop_toTopOf="@+id/steps_icon"
-                app:layout_constraintBottom_toBottomOf="@+id/steps_icon"
-                android:id="@+id/textView2"
-                app:layout_constraintStart_toEndOf="@+id/steps_icon"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                        <TextView
+                                tools:text="4,3 km"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_normal"
+                                android:textStyle="bold"
+                                android:text="@{viewmodel.distance == null? ` 0 ` + @string/kilometres_short : viewmodel.distance + ` ` + @string/kilometres_short}"
+                                app:layout_constraintEnd_toEndOf="@+id/distance_icon"
+                                app:layout_constraintStart_toStartOf="@+id/distance_icon"
+                                android:layout_marginTop="@dimen/space_medium"
+                                app:layout_constraintTop_toBottomOf="@+id/distance_icon"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                    android:id="@+id/steps_icon"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:src="@drawable/ic_steps"
+                    android:layout_marginEnd="@dimen/space_medium"
+                    android:tint="@color/colorPrimaryDark"
+                    android:layout_marginTop="@dimen/space_biggest"
+                    app:layout_constraintTop_toBottomOf="@+id/card_info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/step_text"
+                    app:layout_constraintHorizontal_chainStyle="packed"/>
+
+            <TextView
+                    tools:text="1230 steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_bigger"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{viewmodel.steps == null? ` 0 ` + @string/steps : viewmodel.steps + ` ` + @string/steps}"
+                    app:layout_constraintTop_toTopOf="@+id/steps_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/steps_icon"
+                    android:id="@+id/step_text"
+                    app:layout_constraintStart_toEndOf="@+id/steps_icon"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/run_icon"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:src="@drawable/ic_run"
+                    android:layout_marginTop="@dimen/text_big"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="@dimen/space_none"
+                    android:tint="@color/colorPrimaryDark"
+                    app:layout_constraintStart_toStartOf="@+id/steps_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/steps_icon"/>
+
+            <TextView
+                    tools:text="32 min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_bigger"
+                    android:textStyle="bold"
+                    android:id="@+id/run_text"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{viewmodel.runningTime == null? ` 0 ` + @string/minutes_short : viewmodel.runningTime + ` ` + @string/minutes_short}"
+                    android:layout_marginStart="@dimen/space_medium"
+                    app:layout_constraintBottom_toBottomOf="@+id/run_icon"
+                    app:layout_constraintStart_toEndOf="@+id/run_icon"
+                    app:layout_constraintTop_toTopOf="@+id/run_icon"/>
+
+            <ImageView
+                    android:id="@+id/biking_icon"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:src="@drawable/ic_bike"
+                    android:tint="@color/colorPrimaryDark"
+                    app:layout_constraintStart_toStartOf="@+id/run_icon"
+                    android:layout_marginStart="@dimen/space_none"
+                    android:layout_marginTop="@dimen/text_big"
+                    app:layout_constraintTop_toBottomOf="@+id/run_icon"
+                    android:layout_marginBottom="@dimen/space_medium"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                    tools:text="12 min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_bigger"
+                    android:textStyle="bold"
+                    android:id="@+id/biking_text"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@{viewmodel.bikingTime == null? ` 0 ` + @string/minutes_short : viewmodel.bikingTime + ` ` + @string/minutes_short}"
+                    android:layout_marginStart="@dimen/space_medium"
+                    app:layout_constraintBottom_toBottomOf="@+id/biking_icon"
+                    app:layout_constraintStart_toEndOf="@+id/biking_icon"
+                    app:layout_constraintTop_toTopOf="@+id/biking_icon"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

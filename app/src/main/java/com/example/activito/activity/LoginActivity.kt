@@ -28,7 +28,8 @@ class LoginActivity : AppCompatActivity() {
         DataType.TYPE_STEP_COUNT_DELTA,
         DataType.TYPE_CALORIES_EXPENDED,
         DataType.TYPE_DISTANCE_DELTA,
-        DataType.TYPE_MOVE_MINUTES
+        DataType.TYPE_MOVE_MINUTES,
+        DataType.TYPE_ACTIVITY_SEGMENT
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
