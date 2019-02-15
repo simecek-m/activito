@@ -4,9 +4,9 @@ import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.widget.NumberPicker
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.activito.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class WeightPickerDialogFragment: DialogFragment() {
 
@@ -25,7 +25,7 @@ class WeightPickerDialogFragment: DialogFragment() {
             maxValue = 9
             value = 0
         }
-        return AlertDialog.Builder(activity!!)
+        return MaterialAlertDialogBuilder(activity!!)
             .setTitle(R.string.weight_dialog_title)
             .setView(numberPickerLayout)
             .setMessage(R.string.weight_dialog_description)

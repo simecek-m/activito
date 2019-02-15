@@ -48,12 +48,10 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_weight"
-            android:src="@drawable/ic_add"
-            android:tint="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_bigger"
-            android:layout_marginEnd="@dimen/space_bigger"
+            android:layout_margin="@dimen/space_bigger"
+            app:srcCompat="@drawable/ic_add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
