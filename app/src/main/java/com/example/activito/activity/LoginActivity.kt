@@ -26,7 +26,9 @@ class LoginActivity : AppCompatActivity() {
         DataType.TYPE_WEIGHT,
         DataType.TYPE_HEIGHT,
         DataType.TYPE_STEP_COUNT_DELTA,
-        DataType.TYPE_CALORIES_EXPENDED
+        DataType.TYPE_CALORIES_EXPENDED,
+        DataType.TYPE_DISTANCE_DELTA,
+        DataType.TYPE_MOVE_MINUTES
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun handleLogin(){
+    private fun handleLogin(){
         // subscribe data
         val tasks = ArrayList<Task<Void>>()
         val account = GoogleSignIn.getLastSignedInAccount(this)!!

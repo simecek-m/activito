@@ -37,6 +37,8 @@ class ActivityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadDailyCalories()
         loadDailySteps()
+        loadDailyDistance()
+        loadDailyMoveMinutes()
 
         sync.setOnClickListener { clickedView ->
             if(view.animation == null){
@@ -44,6 +46,8 @@ class ActivityFragment : Fragment() {
                 Animation.rotation(clickedView)
                 loadDailyCalories()
                 loadDailySteps()
+                loadDailyDistance()
+                loadDailyMoveMinutes()
             }
         }
     }
@@ -51,17 +55,28 @@ class ActivityFragment : Fragment() {
     private fun loadDailySteps(){
         Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_STEP_COUNT_DELTA)
-            .addOnSuccessListener { dataSet ->
-                activityViewModel.setDailySteps(dataSet)
-            }.addOnFailureListener{ e -> Log.e(TAG, "loadDailySteps", e)}
-
+            .addOnSuccessListener{ activityViewModel.setDailySteps(it)}
+            .addOnFailureListener{ e -> Log.e(TAG, "loadDailySteps", e)}
     }
 
     private fun loadDailyCalories(){
         Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_CALORIES_EXPENDED)
-            .addOnSuccessListener { dataSet ->
-                activityViewModel.setDailyCalories(dataSet)
-            }.addOnFailureListener{ e -> Log.e(TAG, "loadDailyCalories", e)}
+            .addOnSuccessListener{ activityViewModel.setDailyCalories(it)}
+            .addOnFailureListener{ e -> Log.e(TAG, "loadDailyCalories", e)}
+    }
+
+    private fun loadDailyDistance(){
+        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+            .readDailyTotal(DataType.TYPE_DISTANCE_DELTA)
+            .addOnSuccessListener{ activityViewModel.setDailyDistance(it)}
+            .addOnFailureListener{ e -> Log.e(TAG, "loadDailyDistance", e)}
+    }
+
+    private fun loadDailyMoveMinutes(){
+        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+            .readDailyTotal(DataType.TYPE_MOVE_MINUTES)
+            .addOnSuccessListener{ activityViewModel.setDailyMoveMinutes(it) }
+            .addOnFailureListener{ e -> Log.e(TAG, "loadDailyMoveMinutes", e)}
     }
 }
