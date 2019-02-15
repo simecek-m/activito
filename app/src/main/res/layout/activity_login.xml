@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="@string/login"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="@+id/textView"
             app:layout_constraintStart_toStartOf="@+id/textView"
             android:id="@+id/login_button"
