@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.activito.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class LogoutDialogFragment: DialogFragment() {
 
@@ -14,7 +15,7 @@ class LogoutDialogFragment: DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let{
-            AlertDialog.Builder(it)
+            MaterialAlertDialogBuilder(it)
                 .setTitle(R.string.logout_dialog_title)
                 .setMessage(R.string.logout_dialog_description)
                 .setNegativeButton(R.string.cancel) { dialog, _ ->
