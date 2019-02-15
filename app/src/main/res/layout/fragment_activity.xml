@@ -8,6 +8,7 @@
                 type="com.example.activito.viewmodel.ActivityViewModel">
         </variable>
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,71 +20,186 @@
                 android:text="@string/today"
                 android:textSize="@dimen/text_title"
                 android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
                 android:layout_marginTop="@dimen/space_biggest"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="@dimen/space_none"
+                android:layout_marginEnd="@dimen/space_none"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
                 android:id="@+id/sync"
                 android:layout_width="@dimen/icon_small_size"
                 android:layout_height="@dimen/icon_small_size"
                 android:src="@drawable/ic_sync"
-                android:tint="@color/colorPrimary"
                 android:layout_marginTop="@dimen/space_bigger"
                 android:layout_marginEnd="@dimen/space_bigger"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-        <ImageView
-                android:id="@+id/calories_icon"
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:src="@drawable/ic_calories"
-                android:tint="@color/colorPrimary"
-                android:layout_marginStart="@dimen/space_biggest"
-                android:layout_marginTop="@dimen/space_biggest"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_title"/>
-
-        <TextView
-                tools:text="1580 calories"
-                android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_info"
+                android:layout_width="0dp"
+                app:cardElevation="5dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_bigger"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                android:text="@{viewmodel.calories == null? ` - ` : viewmodel.calories + ` ` + @string/calories}"
-                android:layout_marginStart="@dimen/space_bigger"
-                app:layout_constraintTop_toTopOf="@+id/calories_icon"
-                app:layout_constraintBottom_toBottomOf="@+id/calories_icon"
-                app:layout_constraintStart_toEndOf="@+id/calories_icon"/>
+                app:layout_constraintWidth_percent="0.8"
+                app:layout_constraintHeight_percent="0.4"
+                android:layout_marginTop="@dimen/space_big"
+                android:layout_marginStart="@dimen/space_none"
+                android:layout_marginEnd="@dimen/space_none"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_title">
+
+            <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/calories_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:layout_editor_absoluteX="50dp">
+
+                    <ImageView
+                            android:id="@+id/calories_icon"
+                            android:layout_width="@dimen/icon_medium_size"
+                            android:layout_height="@dimen/icon_medium_size"
+                            android:src="@drawable/ic_calories"
+                            android:layout_marginTop="@dimen/space_none"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginStart="@dimen/space_none"
+                            android:layout_marginEnd="@dimen/space_none"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <TextView
+                            tools:text="1580 cal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_normal"
+                            android:textStyle="bold"
+                            android:text="@{viewmodel.calories == null? ` - ` + @string/calories_short : viewmodel.calories + ` ` + @string/calories_short}"
+                            app:layout_constraintEnd_toEndOf="@+id/calories_icon"
+                            app:layout_constraintStart_toStartOf="@+id/calories_icon"
+                            android:layout_marginTop="@dimen/space_medium"
+                            app:layout_constraintTop_toBottomOf="@+id/calories_icon"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/minutes_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/calories_layout"
+                        app:layout_constraintBottom_toBottomOf="@id/calories_layout">
+
+                    <ImageView
+                            android:id="@+id/minutes_icon"
+                            android:layout_width="@dimen/icon_medium_size"
+                            android:layout_height="@dimen/icon_medium_size"
+                            android:src="@drawable/ic_time"
+                            android:layout_marginTop="@dimen/space_none"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginStart="@dimen/space_none"
+                            android:layout_marginEnd="@dimen/space_none"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <TextView
+                            tools:text="94 min"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_normal"
+                            android:textStyle="bold"
+                            android:text="@{viewmodel.moveMinutes == null? ` - ` + @string/minutes_short : viewmodel.moveMinutes + ` ` + @string/minutes_short}"
+                            app:layout_constraintEnd_toEndOf="@+id/minutes_icon"
+                            app:layout_constraintStart_toStartOf="@+id/minutes_icon"
+                            android:layout_marginTop="@dimen/space_medium"
+                            app:layout_constraintTop_toBottomOf="@+id/minutes_icon"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/distance_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/calories_layout"
+                        app:layout_constraintBottom_toBottomOf="@id/calories_layout">
+
+                    <ImageView
+                            android:id="@+id/distance_icon"
+                            android:layout_width="@dimen/icon_medium_size"
+                            android:layout_height="@dimen/icon_medium_size"
+                            android:src="@drawable/ic_distance"
+                            android:layout_marginTop="@dimen/space_none"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginStart="@dimen/space_none"
+                            android:layout_marginEnd="@dimen/space_none"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <TextView
+                            tools:text="4,3 km"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_normal"
+                            android:textStyle="bold"
+                            android:text="@{viewmodel.distance == null? ` - ` + @string/kilometres_short : viewmodel.distance + ` ` + @string/kilometres_short}"
+                            app:layout_constraintEnd_toEndOf="@+id/distance_icon"
+                            app:layout_constraintStart_toStartOf="@+id/distance_icon"
+                            android:layout_marginTop="@dimen/space_medium"
+                            app:layout_constraintTop_toBottomOf="@+id/distance_icon"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <ImageView
                 android:id="@+id/steps_icon"
                 android:layout_width="@dimen/icon_size"
                 android:layout_height="@dimen/icon_size"
                 android:src="@drawable/ic_steps"
-                android:tint="@color/colorPrimary"
+                android:layout_marginRight="@dimen/space_medium"
+                android:tint="@color/colorPrimaryDark"
                 android:layout_marginTop="@dimen/space_biggest"
-                android:layout_marginStart="0dp"
-                app:layout_constraintStart_toStartOf="@+id/calories_icon"
-                app:layout_constraintTop_toBottomOf="@+id/calories_icon"/>
+                app:layout_constraintTop_toBottomOf="@+id/card_info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintHorizontal_chainStyle="packed"/>
 
         <TextView
-                tools:text="1220 steps"
+                tools:text="1230 steps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_bigger"
-                android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
-                android:text="@{viewmodel.steps == null? ` - ` : viewmodel.steps + ` ` + @string/steps}"
-                android:layout_marginStart="@dimen/space_bigger"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@{viewmodel.steps == null? ` - ` + @string/steps : viewmodel.steps + ` ` + @string/steps}"
                 app:layout_constraintTop_toTopOf="@+id/steps_icon"
                 app:layout_constraintBottom_toBottomOf="@+id/steps_icon"
-                app:layout_constraintStart_toEndOf="@+id/steps_icon"/>
+                android:id="@+id/textView2"
+                app:layout_constraintStart_toEndOf="@+id/steps_icon"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

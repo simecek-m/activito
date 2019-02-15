@@ -13,6 +13,11 @@
     <string name="today">Dnes</string>
     <string name="steps">kroků</string>
     <string name="calories">kalorií</string>
+    <string name="calories_short">cal</string>
+    <string name="minutes">minut</string>
+    <string name="minutes_short">min</string>
+    <string name="kilometres">kilometrů</string>
+    <string name="kilometres_short">km</string>
     <string name="cancel">Zrušit</string>
     <string name="logout">Odhlásit se</string>
     <string name="logout_dialog_title">Odhlášení</string>

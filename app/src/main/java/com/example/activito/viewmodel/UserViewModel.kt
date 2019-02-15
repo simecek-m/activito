@@ -39,6 +39,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         .requestProfile()
         .requestScopes(Scope(Scopes.FITNESS_BODY_READ_WRITE))
         .requestScopes(Scope(Scopes.FITNESS_ACTIVITY_READ_WRITE))
+        .requestScopes(Scope(Scopes.FITNESS_LOCATION_READ))
         .build()
 
     private val googleSignInClient = GoogleSignIn.getClient(application, googleSignInOptions);
