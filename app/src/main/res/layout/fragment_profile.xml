@@ -18,8 +18,8 @@
                 android:layout_height="@dimen/icon_small_size"
                 android:src="@drawable/ic_sync"
                 android:tint="@color/colorPrimary"
-                android:layout_marginTop="@dimen/space_big"
-                android:layout_marginEnd="@dimen/space_big"
+                android:layout_marginTop="@dimen/space_bigger"
+                android:layout_marginEnd="@dimen/space_bigger"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
