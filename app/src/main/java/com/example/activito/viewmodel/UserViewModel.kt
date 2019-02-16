@@ -57,14 +57,12 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         val calendar = Calendar.getInstance()
         calendar.time = Date()
         val endTime = calendar.timeInMillis
-        calendar.add(Calendar.YEAR, -1)
-        val startTime = calendar.timeInMillis
 
         return DataReadRequest.Builder()
             .enableServerQueries()
             .read(DataType.TYPE_WEIGHT)
             .read(DataType.TYPE_HEIGHT)
-            .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
+            .setTimeRange(1, endTime, TimeUnit.MILLISECONDS)
             .setLimit(1)
             .build()
     }
