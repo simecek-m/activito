@@ -81,12 +81,13 @@
                                 android:id="@+id/calories_icon"
                                 android:layout_width="@dimen/icon_medium_size"
                                 android:layout_height="@dimen/icon_medium_size"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/ic_calories"
                                 android:layout_marginTop="@dimen/space_none"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginStart="@dimen/space_none"
                                 android:layout_marginEnd="@dimen/space_none"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"/>
 
                         <TextView
@@ -118,12 +119,13 @@
                                 android:id="@+id/minutes_icon"
                                 android:layout_width="@dimen/icon_medium_size"
                                 android:layout_height="@dimen/icon_medium_size"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/ic_time"
                                 android:layout_marginTop="@dimen/space_none"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginStart="@dimen/space_none"
                                 android:layout_marginEnd="@dimen/space_none"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"/>
 
                         <TextView
@@ -155,12 +157,13 @@
                                 android:id="@+id/distance_icon"
                                 android:layout_width="@dimen/icon_medium_size"
                                 android:layout_height="@dimen/icon_medium_size"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/ic_distance"
                                 android:layout_marginTop="@dimen/space_none"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginStart="@dimen/space_none"
                                 android:layout_marginEnd="@dimen/space_none"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"/>
 
                         <TextView
@@ -183,6 +186,7 @@
                     android:id="@+id/steps_icon"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
+                    android:scaleType="fitXY"
                     android:src="@drawable/ic_steps"
                     android:layout_marginEnd="@dimen/space_medium"
                     android:tint="@color/colorPrimaryDark"
@@ -211,6 +215,7 @@
                     android:id="@+id/run_icon"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
+                    android:scaleType="fitXY"
                     android:src="@drawable/ic_run"
                     android:layout_marginTop="@dimen/text_big"
                     android:layout_marginEnd="10dp"
@@ -236,6 +241,7 @@
                     android:id="@+id/biking_icon"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
+                    android:scaleType="fitXY"
                     android:src="@drawable/ic_bike"
                     android:tint="@color/colorPrimaryDark"
                     app:layout_constraintStart_toStartOf="@+id/run_icon"

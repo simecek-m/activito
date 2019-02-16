@@ -26,7 +26,6 @@
             android:layout_width="@dimen/icon_small_size"
             android:layout_height="@dimen/icon_small_size"
             android:src="@drawable/ic_sync"
-            android:tint="@color/colorPrimary"
             android:layout_marginTop="@dimen/space_bigger"
             android:layout_marginEnd="@dimen/space_bigger"
             app:layout_constraintTop_toTopOf="parent"
