@@ -17,7 +17,10 @@ class ActivityViewModel: ViewModel(){
     var runningTime:MutableLiveData<Int> = MutableLiveData()
     var bikingTime:MutableLiveData<Int> = MutableLiveData()
 
-    val metersInKilometer = 1000
+    val METERS_IN_KILOMETER = 1000
+    val SECONDS_IN_MINUTE = 60
+    val MILLISECONDS_IN_SECOND = 1000
+
 
     fun setDailySteps(dataSet: DataSet){
         steps.value = dataSet.dataPoints
@@ -38,7 +41,7 @@ class ActivityViewModel: ViewModel(){
             ?.firstOrNull()
             ?.getValue(Field.FIELD_DISTANCE)
             ?.asFloat()
-            ?.div(metersInKilometer)
+            ?.div(METERS_IN_KILOMETER)
             ?.toBigDecimal()
             ?.setScale(2, RoundingMode.UP)
             ?.toFloat()
@@ -54,8 +57,15 @@ class ActivityViewModel: ViewModel(){
     fun setDailyActivities(dataSet: DataSet) {
         dataSet.dataPoints.forEach {
             when(it.getValue(Field.FIELD_ACTIVITY).asActivity()){
-                FitnessActivities.RUNNING -> runningTime.value = it.getValue(Field.FIELD_DURATION).asInt() / 1000 / 60
-                FitnessActivities.BIKING -> bikingTime.value = it.getValue(Field.FIELD_DURATION).asInt() / 1000 / 60
+                FitnessActivities.RUNNING -> runningTime.value = it.getValue(Field.FIELD_DURATION)
+                        .asInt()
+                        .div(MILLISECONDS_IN_SECOND)
+                        .div(SECONDS_IN_MINUTE)
+                FitnessActivities.BIKING -> bikingTime.value = it.getValue(Field.FIELD_DURATION)
+                        .asInt()
+                        .div(MILLISECONDS_IN_SECOND)
+                        .div(SECONDS_IN_MINUTE)
+                FitnessActivities.WALKING -> println("walking: ${it.getValue(Field.FIELD_DURATION)}")
             }
         }
     }
