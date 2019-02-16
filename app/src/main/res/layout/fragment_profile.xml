@@ -17,7 +17,6 @@
                 android:layout_width="@dimen/icon_small_size"
                 android:layout_height="@dimen/icon_small_size"
                 android:src="@drawable/ic_sync"
-                android:tint="@color/colorPrimary"
                 android:layout_marginTop="@dimen/space_bigger"
                 android:layout_marginEnd="@dimen/space_bigger"
                 app:layout_constraintTop_toTopOf="parent"
@@ -25,8 +24,8 @@
 
         <TextView
                 android:id="@+id/name"
-                tools:text="Jan"
-                android:text="@{viewmodel.currentUser.givenName}"
+                tools:text="Jan Novák"
+                android:text="@{viewmodel.currentUser.displayName}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_big"
@@ -44,8 +43,8 @@
                 tools:text="novak@mail.com"
                 android:text="@{viewmodel.currentUser.email}"
                 android:textSize="@dimen/text_normal"
-                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_normal"
                 app:layout_constraintTop_toBottomOf="@+id/name"
@@ -57,50 +56,62 @@
                 android:src="@drawable/ic_avatar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginStart="0dp"
                 android:background="@drawable/circle_shape"
                 android:padding="@dimen/stroke_width"
                 android:layout_marginTop="@dimen/space_bigger"
-                app:layout_constraintWidth_percent="0.4"
-                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email"/>
+
+        <ImageView
+                android:id="@+id/height_icon"
+                android:layout_width="@dimen/icon_medium_size"
+                android:layout_height="@dimen/icon_medium_size"
+                android:layout_marginTop="@dimen/space_biggest"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_height"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/profile_image"/>
 
         <TextView
                 android:id="@+id/height"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="1.82 m"
-                android:text="@{viewmodel.height + ` m`}"
-                android:visibility="@{viewmodel.height == null? View.INVISIBLE: View.VISIBLE}"
+                android:text="@{viewmodel.height == null? `- ` + @string/unit_meters : viewmodel.height + ` ` + @string/unit_meters}"
                 android:textSize="@dimen/text_bigger"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginTop="@dimen/space_big"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image"/>
+                android:layout_marginStart="@dimen/space_medium"
+                app:layout_constraintTop_toTopOf="@+id/height_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/height_icon"
+                app:layout_constraintStart_toEndOf="@+id/height_icon"/>
+
+        <ImageView
+                android:id="@+id/weight_icon"
+                android:layout_width="@dimen/icon_medium_size"
+                android:layout_height="@dimen/icon_medium_size"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_weight"
+                android:layout_marginStart="@dimen/space_none"
+                android:layout_marginTop="@dimen/space_bigger"
+                app:layout_constraintTop_toBottomOf="@+id/height_icon"
+                app:layout_constraintStart_toStartOf="@+id/height_icon"/>
 
         <TextView
                 android:id="@+id/weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="84 kg"
-                android:text="@{viewmodel.weight + ` kg`}"
-                android:visibility="@{viewmodel.weight == null? View.INVISIBLE: View.VISIBLE}"
+                android:text="@{viewmodel.weight == null? `- ` + @string/unit_kilograms : viewmodel.weight + ` ` + @string/unit_kilograms}"
                 android:textSize="@dimen/text_bigger"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginTop="@dimen/space_normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/height"/>
+                android:layout_marginStart="@dimen/space_medium"
+                app:layout_constraintTop_toTopOf="@+id/weight_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/weight_icon"
+                app:layout_constraintStart_toEndOf="@+id/weight_icon"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/logout_button"
