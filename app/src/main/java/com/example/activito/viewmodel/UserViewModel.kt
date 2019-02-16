@@ -103,7 +103,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         return result
     }
 
-    fun getDeleteLastWeightRequet():DataDeleteRequest{
+    fun getDeleteLastWeightRequest():DataDeleteRequest{
         val cal = Calendar.getInstance()
         val now = Date()
         cal.time = now
