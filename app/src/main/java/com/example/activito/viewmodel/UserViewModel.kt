@@ -14,6 +14,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
 import com.google.android.gms.common.api.Scope
+import com.google.android.gms.fitness.data.DataSet
+import com.google.android.gms.fitness.data.DataSource
 import com.google.android.gms.fitness.data.DataType
 import com.google.android.gms.fitness.data.Field
 import com.google.android.gms.fitness.request.DataDeleteRequest
@@ -51,6 +53,22 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun signOut(): Task<Void>{
         currentUser = null
         return googleSignInClient.signOut()
+    }
+
+    fun getAddWeightRequest(weight: Float):DataSet{
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        val now = calendar.timeInMillis
+        val dataSource = DataSource.Builder()
+            .setAppPackageName(getApplication<Application>())
+            .setDataType(DataType.TYPE_WEIGHT)
+            .setType(DataSource.TYPE_RAW)
+            .build()
+        val dataSet = DataSet.create(dataSource)
+        val dataPoint = dataSet.createDataPoint().setTimeInterval(now, now, TimeUnit.MILLISECONDS)
+        dataPoint.getValue(Field.FIELD_WEIGHT).setFloat(weight)
+        dataSet.add(dataPoint)
+        return dataSet
     }
 
     fun getBodyInfoRequest():DataReadRequest{
@@ -106,10 +124,11 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         val now = Date()
         cal.time = now
         val endTime = cal.timeInMillis
-        cal.add(Calendar.DAY_OF_MONTH, -2)
+        cal.add(Calendar.MONTH, -1)
         val startTime = cal.timeInMillis
         return DataDeleteRequest.Builder()
             .addDataType(DataType.TYPE_WEIGHT)
+            .deleteAllSessions()
             .setTimeInterval(startTime, endTime, TimeUnit.MILLISECONDS)
             .build()
     }

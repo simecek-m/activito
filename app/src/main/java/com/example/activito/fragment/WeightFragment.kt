@@ -44,8 +44,13 @@ class WeightFragment : Fragment() {
     }
 
     private fun showAddWeightDialog() {
-        val fragment = WeightPickerDialogFragment()
-        fragment.show(fragmentManager!!, WEIGHT_PICKER_DIALOG_TAG)
+        val dialog = WeightPickerDialogFragment()
+        dialog.addOnPositiveButtonClickListener {
+            Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+                .insertData(userViewModel.getAddWeightRequest(dialog.newWeightEntry))
+                .addOnSuccessListener { loadWeightProgress() }
+        }
+        dialog.show(fragmentManager!!, WEIGHT_PICKER_DIALOG_TAG)
     }
 
     private fun loadWeightProgress(){
