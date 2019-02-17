@@ -26,4 +26,7 @@
     <string name="weight_dialog_description">Vyberte Vaši aktuální váhu:</string>
     <string name="confirm">Potvrdit</string>
     <string name="decimal_point">,</string>
+    <string name="location_permission_title">Přístup k poloze</string>
+    <string name="location_permission_explanation">Activito potřebuje přístup k poloze Vašeho zařízení, aby mohl správně zobrazovat Váši denní uraženou vzdálenost</string>
+    <string name="understand">Rozumím</string>
 </resources>
