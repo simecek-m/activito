@@ -104,7 +104,7 @@
                 app:layout_constraintStart_toStartOf="@+id/height_icon"/>
 
         <TextView
-                android:id="@+id/weight"
+                android:id="@+id/weight_fragment_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="84 kg"

@@ -18,7 +18,6 @@ import com.google.android.gms.fitness.data.DataSet
 import com.google.android.gms.fitness.data.DataSource
 import com.google.android.gms.fitness.data.DataType
 import com.google.android.gms.fitness.data.Field
-import com.google.android.gms.fitness.request.DataDeleteRequest
 import com.google.android.gms.fitness.request.DataReadRequest
 import com.google.android.gms.fitness.result.DataReadResponse
 import com.google.android.gms.tasks.Task
@@ -100,37 +99,21 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun getWeightProgressRequest():DataReadRequest{
         val calendar = Calendar.getInstance()
         calendar.time = Date()
-        val endTime = calendar.timeInMillis
-        calendar.add(Calendar.MONTH, -6)
-        val startTime = calendar.timeInMillis
+        val now = calendar.timeInMillis
         return DataReadRequest.Builder()
             .enableServerQueries()
             .read(DataType.TYPE_WEIGHT)
-            .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
+            .setTimeRange(1, now, TimeUnit.MILLISECONDS)
+            .setLimit(5)
             .build()
     }
 
     fun getWeightProgressChartPoints(data:DataReadResponse): ArrayList<Entry>{
         val result = ArrayList<Entry>()
-        data.getDataSet(DataType.TYPE_WEIGHT)
-            .dataPoints.forEachIndexed { index, dataPoint ->
-                result.add(Entry( index.toFloat(), dataPoint.getValue(Field.FIELD_WEIGHT).asFloat()))
+        data.getDataSet(DataType.TYPE_WEIGHT).dataPoints.forEach {
+            result.add(Entry( it.getStartTime(TimeUnit.MILLISECONDS).toFloat() , it.getValue(Field.FIELD_WEIGHT).asFloat()))
         }
         return result
-    }
-
-    fun getDeleteLastWeightRequest():DataDeleteRequest{
-        val cal = Calendar.getInstance()
-        val now = Date()
-        cal.time = now
-        val endTime = cal.timeInMillis
-        cal.add(Calendar.MONTH, -1)
-        val startTime = cal.timeInMillis
-        return DataDeleteRequest.Builder()
-            .addDataType(DataType.TYPE_WEIGHT)
-            .deleteAllSessions()
-            .setTimeInterval(startTime, endTime, TimeUnit.MILLISECONDS)
-            .build()
     }
 
     fun synchronizeFitService(){
