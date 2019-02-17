@@ -57,6 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="@dimen/stroke_width"
+                android:background="@drawable/circle_shape"
                 android:scaleType="fitXY"
                 android:layout_marginTop="@dimen/space_bigger"
                 app:layout_constraintWidth_percent="0.5"
