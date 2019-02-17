@@ -23,7 +23,7 @@
     <string name="logout_dialog_title">Odhlášení</string>
     <string name="logout_dialog_description">Po odhlášení aplikace přestane snímat veškerou Váši aktivitu. Opravdu se chcete odhlásit?</string>
     <string name="weight_dialog_title">Váha</string>
-    <string name="weight_dialog_description">Vyberte Vaši aktuální váhu:</string>
+    <string name="weight_dialog_description">Zvolte Vaši aktuální váhu:</string>
     <string name="confirm">Potvrdit</string>
     <string name="decimal_point">,</string>
     <string name="location_permission_title">Přístup k poloze</string>
