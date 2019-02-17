@@ -10,17 +10,20 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class WeightPickerDialogFragment: DialogFragment() {
 
+    private val DECIMAL_VALUE = 10
     private val TAG = "LogoutDialogFragment"
+
     private var positiveButtonClickListener: (()->Unit)? = null
+    var newWeightEntry:Float = 0f
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val numberPickerLayout = activity?.layoutInflater?.inflate(R.layout.weight_picker_dialog, null)
-        numberPickerLayout?.findViewById<NumberPicker>(R.id.weight_picker_first)?.apply {
+        val wholeNumberView = numberPickerLayout?.findViewById<NumberPicker>(R.id.weight_picker_whole)?.apply {
             minValue = 10
             maxValue = 100
             value = 60
         }
-        numberPickerLayout?.findViewById<NumberPicker>(R.id.weight_picker_decimal)?.apply {
+        val decimalNumberView = numberPickerLayout?.findViewById<NumberPicker>(R.id.weight_picker_decimal)?.apply {
             minValue = 0
             maxValue = 9
             value = 0
@@ -30,11 +33,15 @@ class WeightPickerDialogFragment: DialogFragment() {
             .setView(numberPickerLayout)
             .setMessage(R.string.weight_dialog_description)
             .setPositiveButton(R.string.confirm) { _, _ ->
-                positiveButtonClickListener?.invoke()
-                    ?: Log.e(TAG, "positiveButtonClickListener not implemented")
+                if(decimalNumberView != null && wholeNumberView != null){
+                    val whole = wholeNumberView.value
+                    val decimal = decimalNumberView.value.toFloat().div(DECIMAL_VALUE)
+                    newWeightEntry = whole + decimal
+                    positiveButtonClickListener?.invoke()
+                        ?: Log.e(TAG, "positiveButtonClickListener not implemented")
+                }
             }
             .create()
-
     }
 
     fun addOnPositiveButtonClickListener(listener: () -> Unit){
