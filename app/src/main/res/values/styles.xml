@@ -10,6 +10,7 @@
         <item name="colorOnSecondary">@color/colorWhite</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 
 </resources>
