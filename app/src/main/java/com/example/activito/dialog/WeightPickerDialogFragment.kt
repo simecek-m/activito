@@ -28,7 +28,7 @@ class WeightPickerDialogFragment: DialogFragment() {
             maxValue = 9
             value = 0
         }
-        return MaterialAlertDialogBuilder(activity!!)
+        return MaterialAlertDialogBuilder(requireActivity())
             .setTitle(R.string.weight_dialog_title)
             .setView(numberPickerLayout)
             .setMessage(R.string.weight_dialog_description)

@@ -47,7 +47,7 @@ class WeightFragment : Fragment() {
     private fun showAddWeightDialog() {
         val dialog = WeightPickerDialogFragment()
         dialog.addOnPositiveButtonClickListener {
-            Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+            Fitness.getHistoryClient(requireActivity(), userViewModel.currentUser!!)
                 .insertData(userViewModel.getAddWeightRequest(dialog.newWeightEntry))
                 .addOnSuccessListener { loadWeightProgress() }
         }
@@ -55,7 +55,7 @@ class WeightFragment : Fragment() {
     }
 
     private fun loadWeightProgress(){
-        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+        Fitness.getHistoryClient(requireActivity(), userViewModel.currentUser!!)
             .readData(userViewModel.getWeightProgressRequest())
             .addOnSuccessListener { response ->
                 if (isAdded){
@@ -68,7 +68,7 @@ class WeightFragment : Fragment() {
     }
 
     private fun initDataSet(entries: List<Entry>):LineDataSet{
-        val primaryColor = ContextCompat.getColor(activity!!, R.color.colorPrimary)
+        val primaryColor = ContextCompat.getColor(requireActivity(), R.color.colorPrimary)
         val dataSet = LineDataSet(entries, "")
         return dataSet.apply {
             setCircleColor(primaryColor)

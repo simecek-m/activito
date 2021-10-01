@@ -69,7 +69,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun loadUserBodyInfo(){
-        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+        Fitness.getHistoryClient(requireActivity(), userViewModel.currentUser!!)
             .readData(userViewModel.getBodyInfoRequest())
             .addOnSuccessListener { response ->
                 userViewModel.setBodyInfo(response)

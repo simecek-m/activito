@@ -61,9 +61,9 @@ class ActivityFragment : Fragment() {
     }
 
     private fun checkLocationPermission(){
-        if(ContextCompat.checkSelfPermission(activity!!, Manifest.permission.WRITE_CALENDAR)
+        if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.WRITE_CALENDAR)
             != PackageManager.PERMISSION_GRANTED){
-            if(ActivityCompat.shouldShowRequestPermissionRationale(activity!!, Manifest.permission.ACCESS_FINE_LOCATION)){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION)){
                 MaterialAlertDialogBuilder(activity)
                     .setTitle(R.string.location_permission_title)
                     .setMessage(R.string.location_permission_explanation)
@@ -76,41 +76,41 @@ class ActivityFragment : Fragment() {
     }
 
     private fun requestLocationPermission(){
-        ActivityCompat.requestPermissions(activity!!,
+        ActivityCompat.requestPermissions(requireActivity(),
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
             MY_PERMISSIONS_REQUEST_READ_LOCATION)
     }
 
     private fun loadDailySteps(){
-        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+        Fitness.getHistoryClient(requireActivity(), userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_STEP_COUNT_DELTA)
             .addOnSuccessListener{ activityViewModel.setDailySteps(it)}
             .addOnFailureListener{ e -> Log.e(TAG, "loadDailySteps: ", e)}
     }
 
     private fun loadDailyCalories(){
-        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+        Fitness.getHistoryClient(requireActivity(), userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_CALORIES_EXPENDED)
             .addOnSuccessListener{ activityViewModel.setDailyCalories(it)}
             .addOnFailureListener{ e -> Log.e(TAG, "loadDailyCalories: ", e)}
     }
 
     private fun loadDailyDistance(){
-        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+        Fitness.getHistoryClient(requireActivity(), userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_DISTANCE_DELTA)
             .addOnSuccessListener{ activityViewModel.setDailyDistance(it)}
             .addOnFailureListener{ e -> Log.e(TAG, "loadDailyDistance: ", e)}
     }
 
     private fun loadDailyMoveMinutes(){
-        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+        Fitness.getHistoryClient(requireActivity(), userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_MOVE_MINUTES)
             .addOnSuccessListener{ activityViewModel.setDailyMoveMinutes(it) }
             .addOnFailureListener{ e -> Log.e(TAG, "loadDailyMoveMinutes: ", e)}
     }
 
     private fun loadDailyActivities(){
-        Fitness.getHistoryClient(activity!!, userViewModel.currentUser!!)
+        Fitness.getHistoryClient(requireActivity(), userViewModel.currentUser!!)
             .readDailyTotal(DataType.TYPE_ACTIVITY_SEGMENT)
             .addOnSuccessListener { activityViewModel.setDailyActivities(it) }
             .addOnFailureListener{ e -> Log.e(TAG, "loadDailyActivities: ", e)}
