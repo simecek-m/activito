@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import com.example.activito.R
 import com.example.activito.animation.Animation
 import com.example.activito.dialog.WeightPickerDialogFragment
@@ -25,10 +25,9 @@ import java.text.SimpleDateFormat
 class WeightFragment : Fragment() {
 
     private val WEIGHT_PICKER_DIALOG_TAG = "weight_picker_dialog"
-    lateinit var userViewModel: UserViewModel
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
         return inflater.inflate(R.layout.fragment_weight, container, false)
     }
 

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.activito.R
 import com.example.activito.activity.LoginActivity
@@ -24,11 +24,10 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 class ProfileFragment : Fragment() {
 
     private val LOGOUT_DIALOG_TAG = "logout_dialog"
-    lateinit var userViewModel:UserViewModel
+    private val userViewModel:UserViewModel by viewModels()
     lateinit var binding:FragmentProfileBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         binding.viewmodel = userViewModel
         binding.lifecycleOwner = this

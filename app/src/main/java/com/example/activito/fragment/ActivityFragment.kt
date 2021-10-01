@@ -11,7 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import com.example.activito.R
 import com.example.activito.animation.Animation
 import com.example.activito.databinding.FragmentActivityBinding
@@ -27,13 +27,11 @@ class ActivityFragment : Fragment() {
     val MY_PERMISSIONS_REQUEST_READ_LOCATION = 1
     private val TAG = "ActivityFragment"
 
-    lateinit var userViewModel: UserViewModel
-    lateinit var activityViewModel: ActivityViewModel
+    private val userViewModel: UserViewModel by viewModels()
+    private val activityViewModel: ActivityViewModel by viewModels()
     lateinit var binding: FragmentActivityBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        activityViewModel = ViewModelProviders.of(this).get(ActivityViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_activity, container, false)
         binding.viewmodel = activityViewModel
         binding.lifecycleOwner = this
