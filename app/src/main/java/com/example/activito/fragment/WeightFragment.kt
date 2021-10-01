@@ -51,7 +51,7 @@ class WeightFragment : Fragment() {
                 .insertData(userViewModel.getAddWeightRequest(dialog.newWeightEntry))
                 .addOnSuccessListener { loadWeightProgress() }
         }
-        dialog.show(fragmentManager!!, WEIGHT_PICKER_DIALOG_TAG)
+        dialog.show(childFragmentManager, WEIGHT_PICKER_DIALOG_TAG)
     }
 
     private fun loadWeightProgress(){

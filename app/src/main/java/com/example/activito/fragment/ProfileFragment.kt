@@ -53,7 +53,7 @@ class ProfileFragment : Fragment() {
                         activity?.finish()
                     }
                 }
-                it.show(fragmentManager!!, LOGOUT_DIALOG_TAG)
+                it.show(childFragmentManager, LOGOUT_DIALOG_TAG)
             }
         }
 
